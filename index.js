@@ -43,6 +43,8 @@ function clearUI() {
   mobilesContainer.innerHTML = "";
 }
 
+document.getElementById("")
+
 document.getElementById("PriceLow").addEventListener("click", () => {
   sortByColorReset();
   sortAscendingOrder(products);
@@ -66,6 +68,3 @@ fetchData()
   .catch((error) => {
     console.error("Error occurred:", error);
   });
-
-
-
