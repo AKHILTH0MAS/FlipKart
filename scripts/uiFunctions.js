@@ -157,7 +157,7 @@ export function mobileCard(element) {
   let specUl = document.createElement("ul");
   specUl.className = "specUl";
   element.highlights.forEach((value) => {
-    let specElement = document.createElement("li");
+    let specElement = document.createElement("li");                                                   
     specElement.innerHTML = value;
     specElement.className = "specElement";
     specUl.appendChild(specElement);
@@ -170,6 +170,10 @@ export function mobileCard(element) {
 
   let priceContainer = document.createElement("div");
   priceTextflex.appendChild(priceContainer);
+if(element.price == null || element.mrp == null){
+  element.price  = 14000;
+  element.mrp = 15000;
+}
 
   let pricetext = document.createElement("div");
   pricetext.className = "pricetext";
