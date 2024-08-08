@@ -7,9 +7,9 @@ export function sortDescendingOrder(products) {
 }
 
 export function sortPopularityOrder(products) {
- products.sort((a, b) => b.rating.average - a.rating.average);
+  products.sort((a, b) => b.rating.average - a.rating.average);
 }
 
-export function sortRelevanceOrder(products){
-  products.sort((a,b)=> 0.5-Math.random());
+export function sortRelevanceOrder(products) {
+  products.sort((a, b) => 0.5 - Math.random());
 }

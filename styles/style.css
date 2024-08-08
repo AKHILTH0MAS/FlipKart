@@ -199,24 +199,23 @@ body {
   max-width: 270px;
   margin-right: 10px;
 }
-.filter-container-child{
+.filter-container-child {
   background: #fff;
-
 }
 .filter-heading h2 {
   font-size: 18px;
   font-family: var(--semibold);
   font-weight: 500;
 }
-.filter-heading{
+.filter-heading {
   padding: 16px 16px 12px;
   border-bottom: 1px solid #f0f0f0;
 }
-.filtercard{
+.filtercard {
   cursor: pointer;
   font-size: 12px;
   background-color: #e0e0e0;
-  box-shadow: 0 2px 4px 0 hsla(0, 0%, 100%, .5);
+  box-shadow: 0 2px 4px 0 hsla(0, 0%, 100%, 0.5);
   border-radius: 3px;
   margin: 2px 4px;
   overflow: hidden;
@@ -224,10 +223,10 @@ body {
   max-width: 200px;
   padding: 8px;
 }
-.fliterCardSpan{
+.fliterCardSpan {
   margin-left: 8px;
 }
-.filter-content{
+.filter-content {
   margin: 8px 0 0 -4px;
   display: flex;
   flex-wrap: wrap;
@@ -453,7 +452,7 @@ body {
   width: 100%;
   z-index: 3;
 }
-.priceSliderDots{
+.priceSliderDots {
   margin-top: -12px;
   padding: 0 5px;
   display: flex;
@@ -466,16 +465,15 @@ body {
   align-items: center;
   height: 25px;
 }
-.dot{
+.dot {
   height: 25px;
   color: #878787;
-
 }
 select {
   flex-grow: 2;
   background: #fff;
   padding: 0 5px;
-  height:  24px ;
+  height: 24px;
   font-size: 13px;
   outline: none;
   letter-spacing: 0.1px;
@@ -491,34 +489,42 @@ select {
   text-align: center;
   flex: 1;
 }
-.selectBrand{
-  padding: 16px; 
-}
-.selectBrandHeading{
+.selectCategoryHeading {
+  font-family: var(--semibold);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.3px;
 }
-.searchBrand{
+.searchBrand {
   border: none;
   color: #878787;
   font-size: 12px;
   padding-left: 8px;
+  border-bottom: 1px solid #f0f0f0;
 }
-.searchBrandInput{
+.searchBrandInput {
   display: flex;
   align-items: center;
   border-bottom: 2px solid #e0e0e0;
   margin-bottom: 7px;
 }
-.BrandCard span{
+.categoryCard span {
   font-size: 13px;
   padding-left: 5px;
   line-height: 14px;
   font-size: 500;
   color: #212121;
-  font-family:  var(--regular);
+  font-family: var(--regular);
 }
-.BrandCard {
+.categoryCard {
   padding: 3px 0;
+  display: flex;
+  align-items: center;
+}
+.padding-bottom-16 {
+  padding-bottom: 16px;
+}
+.selectCategory {
+  padding: 16px;
+  border: 1px solid #e0e0e0;
 }

@@ -14,9 +14,16 @@ import {
 let products = [];
 let header;
 let relevanceProducts = [];
-let filterContent = [];
+// let filterContent = [];
+let filterContent = {
+  brand: [],
+  priceRange: [],
+  rating: [],
+  ram: [],
+  internalStorage: [],
+};
 let filteredArray = [];
-
+let CurrentSortMarker = "relevance";
 function sortByColorReset() {
   let sortItemClass = document.querySelectorAll(".sort-nav-item");
   sortItemClass.forEach((element) => {
@@ -29,11 +36,11 @@ async function main(data) {
   navBar(data.nav);
   secondaryNavBar(data.secondaryNav);
   mobileContainerHeader(data, products);
-  updateUi("relevance", relevanceProducts);
+  updateUi(relevanceProducts);
 }
 
-function updateUi(param, products) {
-  let id = document.getElementById(param);
+function updateUi(products) {
+  let id = document.getElementById(CurrentSortMarker);
   id.style.color = "#2874f0";
   products.forEach((element) => {
     mobileCard(element);
@@ -51,7 +58,7 @@ function addBrandsOnCategory() {
   uniqueBrands.forEach((element) => {
     let BrandCard = document.createElement("div");
     BrandCard.innerHTML = `<input class="check-box" type="checkbox" value="${element}" id="${element}"><span>  ${element}</span>`;
-    BrandCard.className = "BrandCard";
+    BrandCard.className = "categoryCard";
     brandContainer.appendChild(BrandCard);
   });
 
@@ -59,15 +66,15 @@ function addBrandsOnCategory() {
     inputItem.addEventListener("change", () => {
       if (inputItem.checked) {
         filterContent.push({ type: "brand", value: inputItem.value });
-        filterCard();
-        filterProducts();
+        createFilterCard();
+        applyFilterOnProducts();
       } else {
         let index = filterContent.findIndex(
           (item) => item.type == "brand" && item.value == inputItem.value
         );
         filterContent.splice(index, 1);
-        filterCard();
-        filterProducts();
+        createFilterCard();
+        applyFilterOnProducts();
       }
     });
   });
@@ -80,12 +87,11 @@ function clearPriceRange() {
   selectMax.dispatchEvent(new Event("click"));
   selectMin.dispatchEvent(new Event("click"));
 }
-function filterCard() {
+function createFilterCard() {
   let filterContainer = document.querySelector(".filter-content");
   filterContainer.innerHTML = "";
   filterContent.forEach((element) => {
     if (element.type == "priceRange") {
-      console.log(element);
       let filterCardItem = ` 
     <div class="filtercard">
         <span class="closeButton"> ✕ </span>
@@ -128,28 +134,57 @@ function filterCard() {
           correspondingCheckbox.checked = false;
         }
 
-        filterProducts();
+        applyFilterOnProducts();
       }
     });
   });
 }
-function filterProducts() {
-  if (filterContent.length != 0) {
-    filteredArray = [];
-    filterContent.forEach((element1) => {
-      if (element1.type == "brand") {
-        products.forEach((element2) => {
-          if (element2.brand == element1.value) {
-            filteredArray.push(element2);
-          }
-        });
-      }
-    });
-  } else {
-    filteredArray = [...relevanceProducts];
-  }
-  clearUI();
-  updateUi("relevance", filteredArray);
+
+function applyFilterOnProducts() {
+  // if (filterContent.length != 0) {
+  //   filteredArray = [];
+  //   filterContent.forEach((element1) => {
+  //     if (element1.type == "brand") {
+  //       let arr = products.filter((value) => {
+  //         if (value.brand == element1.value) return value;
+  //       });
+  //       filteredArray = filteredArray.concat(arr);
+  //     } else if (element1.type == "priceRange") {
+  //       if (filteredArray.length == 0) {
+  //         let arr = products.filter((value) => {
+  //           if (element1.maxValue == 30001) {
+  //             element1.maxValue = Infinity;
+  //           }
+  //           if (
+  //             value.price > element1.minValue &&
+  //             value.price < element1.maxValue
+  //           ) {
+  //             return value;
+  //           }
+  //         });
+  //         filteredArray = filteredArray.concat(arr);
+  //       } else {
+  //         filteredArray = filteredArray.filter((value) => {
+  //           if (element1.maxValue == 30001) {
+  //             element1.maxValue = Infinity;
+  //           }
+  //           if (
+  //             value.price > element1.minValue &&
+  //             value.price < element1.maxValue
+  //           ) {
+  //             return value;
+  //           }
+  //         });
+  //       }
+  //     }
+  //   });
+  // } else {
+  //   filteredArray = products.sort((a, b) => 0.5 - Math.random());
+  // }
+  // clearUI();
+  // console.log(filteredArray);
+  // updateUi(filteredArray);
+  
 }
 
 function filterClear() {
@@ -164,28 +199,31 @@ function clearUI() {
 document.getElementById("relevance").addEventListener("click", () => {
   sortByColorReset();
   clearUI();
-  updateUi("relevance", relevanceProducts);
+  updateUi(relevanceProducts);
 });
 
 document.getElementById("Popularity").addEventListener("click", () => {
   sortByColorReset();
   sortPopularityOrder(products);
   clearUI();
-  updateUi("Popularity", products);
+  CurrentSortMarker = "Popularity";
+  updateUi(products);
 });
 
 document.getElementById("PriceLow").addEventListener("click", () => {
   sortByColorReset();
   sortAscendingOrder(products);
   clearUI();
-  updateUi("PriceLow", products);
+  CurrentSortMarker = "PriceLow";
+  updateUi(products);
 });
 
 document.getElementById("PriceHigh").addEventListener("click", () => {
   sortByColorReset();
   sortDescendingOrder(products);
   clearUI();
-  updateUi("PriceHigh", products);
+  CurrentSortMarker = "PriceHigh";
+  updateUi(products);
 });
 document.getElementById("SelectMin").addEventListener("click", () => {
   let selectMin = document.getElementById("SelectMin");
@@ -252,7 +290,8 @@ document.getElementById("SelectMin").addEventListener("change", () => {
       maxValue: SelectMaxValue,
     });
   }
-  filterCard();
+  createFilterCard();
+  applyFilterOnProducts();
 });
 document.getElementById("SelectMax").addEventListener("click", () => {
   let text = [];
@@ -275,12 +314,13 @@ document.getElementById("SelectMax").addEventListener("click", () => {
       } else {
         if (element == 0) {
           text.push(`<option value="${element}">Min</option>`);
+        } else {
+          text.push(
+            `<option value="${element}">${
+              element == 30001 ? "₹30000+" : `₹${element}`
+            }</option>`
+          );
         }
-        text.push(
-          `<option value="${element}">${
-            element == 30001 ? "₹30000+" : `₹${element}`
-          }</option>`
-        );
       }
     }
   });
@@ -307,12 +347,14 @@ document.getElementById("SelectMax").addEventListener("change", () => {
       } else {
         if (element == 0) {
           text.push(`<option value="${element}">Min</option>`);
+          console.log(element);
+        } else {
+          text.push(
+            `<option value="${element}">${
+              element == 30001 ? "₹30000+" : `₹${element}`
+            }</option>`
+          );
         }
-        text.push(
-          `<option value="${element}">${
-            element == 30001 ? "₹30000+" : `₹${element}`
-          }</option>`
-        );
       }
     }
   });
@@ -331,7 +373,8 @@ document.getElementById("SelectMax").addEventListener("change", () => {
       maxValue: SelectMaxValue,
     });
   }
-  filterCard();
+  createFilterCard();
+  applyFilterOnProducts();
 });
 fetchData()
   .then((data) => {
