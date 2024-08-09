@@ -42,7 +42,8 @@ export function navBar(nav) {
     standerdButton.appendChild(standerdButtonSpan);
     let standerdButtonImage = document.createElement("img");
     standerdButtonImage.src = element.image;
-    standerdButtonImage.className = element.id == "cart" ? "cart" : "caret-down";
+    standerdButtonImage.className =
+      element.id == "cart" ? "cart" : "caret-down";
     if (element.before && element.image) {
       standerdButtonSpan.before(standerdButtonImage);
     } else if (!element.before && element.image) {
@@ -157,7 +158,7 @@ export function mobileCard(element) {
   let specUl = document.createElement("ul");
   specUl.className = "specUl";
   element.highlights.forEach((value) => {
-    let specElement = document.createElement("li");                                                   
+    let specElement = document.createElement("li");
     specElement.innerHTML = value;
     specElement.className = "specElement";
     specUl.appendChild(specElement);
@@ -170,10 +171,10 @@ export function mobileCard(element) {
 
   let priceContainer = document.createElement("div");
   priceTextflex.appendChild(priceContainer);
-if(element.price == null || element.mrp == null){
-  element.price  = 14000;
-  element.mrp = 15000;
-}
+  if (element.price == null || element.mrp == null) {
+    element.price = 14000;
+    element.mrp = 15000;
+  }
 
   let pricetext = document.createElement("div");
   pricetext.className = "pricetext";
@@ -183,7 +184,9 @@ if(element.price == null || element.mrp == null){
   let priceTextoff = document.createElement("div");
   priceTextoff.className = "priceTextOff";
   let offpercent = ((element.mrp - element.price) / element.mrp) * 100;
-  priceTextoff.innerHTML = `<span>₹${element.mrp.toLocaleString()}</span> ${offpercent.toFixed(0)}% Off`;
+  priceTextoff.innerHTML = `<span>₹${element.mrp.toLocaleString()}</span> ${offpercent.toFixed(
+    0
+  )}% Off`;
   priceContainer.appendChild(priceTextoff);
 
   let flipAssured = document.createElement("img");
@@ -206,4 +209,78 @@ if(element.price == null || element.mrp == null){
   bankOffer.className = "bankOffer";
   bankOffer.innerHTML = "Bank Offer";
   specInfoPartitionSecond.appendChild(bankOffer);
+}
+
+export function clearPriceRange() {
+  let selectMin = document.getElementById("SelectMin");
+  let selectMax = document.getElementById("SelectMax");
+  selectMin.value = 0;
+  selectMax.value = 30001;
+  selectMax.dispatchEvent(new Event("click"));
+  selectMin.dispatchEvent(new Event("click"));
+}
+
+
+export function updateUi(products, CurrentSortMarker) {
+  let id = document.getElementById(CurrentSortMarker);
+  id.style.color = "#2874f0";
+  for (let i = 0; i < products.length && i < 24; i++) {
+    mobileCard(products[i]);
+  }
+}
+export function clearUI() {
+  let mobilesContainer = document.querySelector(".mobilesContainerWrapper");
+  mobilesContainer.innerHTML = "";
+}
+export function applyFilterOnProducts(filterContent, filteredArray, products,CurrentSortMarker) {
+  let filterHasdata = Object.values(filterContent).some((value) => {
+    if (value instanceof Set && value.size > 0) {
+      return true;
+    } else if (value.min != null && value.max != null) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  if (filterHasdata) {
+    filteredArray = [];
+    filteredArray = products.filter((product) => {
+      for (let filter in filterContent) {
+        if (
+          filterContent.brand.size > 0 &&
+          !filterContent.brand.has(product.brand)
+        ) {
+          return false;
+        }
+        if (
+          filterContent.priceRange.max != null &&
+          filterContent.priceRange.min != null
+        ) {
+          if (
+            product.price < filterContent.priceRange.min ||
+            product.price > filterContent.priceRange.max
+          ) {
+            return false;
+          }
+        }
+        if (
+          filterContent.rating.size > 0 &&
+          !filterContent.rating.has(Math.round(product.rating.average))
+        ) {
+          return false;
+        }
+        if (
+          filter.size > 0 &&
+          !filter.has(product.highlight[0].split("")[0].split("")[0])
+        ) {
+          return false;
+        }
+        return true;
+      }
+    });
+   return filteredArray;
+  } else {
+   return filteredArray = [...products];
+  }
+  
 }
