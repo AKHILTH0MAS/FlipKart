@@ -265,13 +265,13 @@ export function applyFilterOnProducts(filterContent, filteredArray, products,Cur
         }
         if (
           filterContent.rating.size > 0 &&
-          !filterContent.rating.has(Math.round(product.rating.average))
+          !filterContent.rating.has(Math.floor(product.rating.average))
         ) {
           return false;
         }
         if (
-          filter.size > 0 &&
-          !filter.has(product.highlight[0].split("")[0].split("")[0])
+          filterContent.ram.size > 0 &&
+          !filterContent.ram.has(product.ram)
         ) {
           return false;
         }

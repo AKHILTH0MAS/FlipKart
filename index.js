@@ -3,7 +3,6 @@ import {
   navBar,
   secondaryNavBar,
   mobileContainerHeader,
-  mobileCard,
   clearPriceRange,
   updateUi,
   applyFilterOnProducts,
@@ -13,7 +12,6 @@ import {
   sortAscendingOrder,
   sortDescendingOrder,
   sortPopularityOrder,
-  sortPopularityDescendingOrder,
   sortRelevanceOrder,
   sortAscendingDateOrder,
 } from "./scripts/sortFunctions.js";
@@ -26,7 +24,6 @@ let filterContent = {
   priceRange: { min: null, max: null },
   rating: new Set(),
   ram: new Set(),
-  internalStorage: new Set(),
 };
 let filteredArray = [];
 let CurrentSortMarker = "relevance";
@@ -45,6 +42,7 @@ async function main(data) {
   mobileContainerHeader(data, products);
   updateUi(filteredArray, CurrentSortMarker);
   addBrandsOnCategory(products);
+  Pagination();
 }
 // adding brands on the side bar
 function addBrandsOnCategory(products) {
@@ -91,7 +89,6 @@ function addBrandsOnCategory(products) {
     });
   });
 }
-
 // rating based filtering rating 4 star and above
 document.getElementById("4").addEventListener("change", () => {
   let input = document.getElementById("4");
@@ -118,7 +115,6 @@ document.getElementById("4").addEventListener("change", () => {
     updateUi(filteredArray, CurrentSortMarker);
   }
 });
-
 // for selecting only on the three stared or above the
 document.getElementById("3").addEventListener("change", () => {
   let input = document.getElementById("3");
@@ -146,7 +142,6 @@ document.getElementById("3").addEventListener("change", () => {
   }
 });
 //event listner for the relevance
-
 document.getElementById("relevance").addEventListener("click", () => {
   CurrentSortMarker = "relevance";
   sortRelevanceOrder(filteredArray);
@@ -155,7 +150,6 @@ document.getElementById("relevance").addEventListener("click", () => {
   updateUi(filteredArray, CurrentSortMarker);
 });
 //event listner for the Popularity
-
 document.getElementById("Popularity").addEventListener("click", () => {
   sortByColorReset();
   sortPopularityOrder(filteredArray);
@@ -175,7 +169,6 @@ document.getElementById("PriceLow").addEventListener("click", () => {
 document.getElementById("NewestFirst").addEventListener("click", () => {
   sortByColorReset();
   sortAscendingDateOrder(filteredArray);
-  console.log(filteredArray);
   CurrentSortMarker = "NewestFirst";
   clearUI();
   updateUi(filteredArray, CurrentSortMarker);
@@ -217,7 +210,6 @@ document.getElementById("SelectMin").addEventListener("click", () => {
   SelectMax.innerHTML = text.join("");
 });
 // for resting the select tags action
-
 document.getElementById("SelectMax").addEventListener("click", () => {
   // for resting the select tags action
   let text = [];
@@ -264,7 +256,7 @@ function createFilterCard(classNameList) {
       <div class="filtercard">
         <span class="closeButtonBrand"> ✕ </span>
         <span class="${className}">${element}</span>
-      </div>`;
+        </div>`;
       filterContainer.insertAdjacentHTML("afterbegin", filterCardItem);
     });
   } else if (className == "priceRange") {
@@ -318,6 +310,24 @@ function createFilterCard(classNameList) {
       </div>`;
       filterContainer.insertAdjacentHTML("afterbegin", filterCardItem);
     });
+  } else if (className == "ram") {
+    filterContent.ram.forEach((value) => {
+      let filterCardItem;
+      if (value == 1) {
+        filterCardItem = `
+          <div class="filtercard">
+            <span class="closeButtonRam"> ✕ </span>
+            <span class="${className}">1 GB and Below</span>
+            </div>`;
+      } else {
+        filterCardItem = `
+        <div class="filtercard">
+          <span class="closeButtonRam"> ✕ </span>
+          <span class="${className}">${value} GB</span>
+        </div>`;
+      }
+      filterContainer.insertAdjacentHTML("afterbegin", filterCardItem);
+    });
   }
   let closebuttonBrands = document.querySelectorAll(".closeButtonBrand");
   closebuttonBrands.forEach((element) => {
@@ -352,7 +362,6 @@ function createFilterCard(classNameList) {
         );
 
         filterContent.rating.delete(value);
-        console.log(typeof value);
         cardToRemove.remove();
         let correspondingCheckbox = document.getElementById(value);
         if (correspondingCheckbox) {
@@ -364,7 +373,32 @@ function createFilterCard(classNameList) {
           products,
           CurrentSortMarker
         );
-        clearUI();          
+        clearUI();
+        updateUi(filteredArray, CurrentSortMarker);
+      }
+    });
+  });
+  let closeButtonRam = document.querySelectorAll(".closeButtonRam");
+  closeButtonRam.forEach((element) => {
+    element.addEventListener("click", (event) => {
+      let cardToRemove = event.target.closest(".filtercard");
+      if (cardToRemove) {
+        let value = parseInt(
+          cardToRemove.querySelector(".ram").textContent.trim().split("")[0]
+        );
+        filterContent.ram.delete(value);
+        cardToRemove.remove();
+        let correspondingCheckbox = document.getElementById(`${value}gbram`);
+        if (correspondingCheckbox.checked) {
+          correspondingCheckbox.checked = false;
+        }
+        filteredArray = applyFilterOnProducts(
+          filterContent,
+          filteredArray,
+          products,
+          CurrentSortMarker
+        );
+        clearUI();
         updateUi(filteredArray, CurrentSortMarker);
       }
     });
@@ -436,7 +470,6 @@ document.getElementById("SelectMax").addEventListener("change", () => {
       } else {
         if (element == 0) {
           text.push(`<option value="${element}">Min</option>`);
-          console.log(element);
         } else {
           text.push(
             `<option value="${element}">${
@@ -467,7 +500,224 @@ document.getElementById("SelectMax").addEventListener("change", () => {
   updateUi(filteredArray, CurrentSortMarker);
 });
 // event listner for ram 4 gb
-document.getElementById("4gbram").addEventListener("change", () => {});
+document.getElementById("4gbram").addEventListener("change", () => {
+  let input = document.getElementById("4gbram");
+  if (input.checked) {
+    filterContent.ram.add(4);
+    createFilterCard("input ram");
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  } else {
+    filterContent.ram.delete(4);
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  }
+});
+//eventlistner for ram 3gb
+document.getElementById("3gbram").addEventListener("change", () => {
+  let input = document.getElementById("3gbram");
+  if (input.checked) {
+    filterContent.ram.add(3);
+    createFilterCard("input ram");
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  } else {
+    filterContent.ram.delete(3);
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  }
+});
+//event listner for 2gb ram
+document.getElementById("2gbram").addEventListener("change", () => {
+  let input = document.getElementById("2gbram");
+  if (input.checked) {
+    filterContent.ram.add(2);
+    createFilterCard("input ram");
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  } else {
+    filterContent.ram.delete(2);
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  }
+});
+//EventListner 1 gb ram and less
+document.getElementById("1gbram").addEventListener("change", () => {
+  let input = document.getElementById("1gbram");
+  if (input.checked) {
+    filterContent.ram.add(1);
+    createFilterCard("input ram");
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  } else {
+    filterContent.ram.delete(1);
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  }
+});
+//EventListner 8 gb ram
+document.getElementById("8gbram").addEventListener("change", () => {
+  let input = document.getElementById("8gbram");
+  if (input.checked) {
+    filterContent.ram.add(8);
+    createFilterCard("input ram");
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  } else {
+    filterContent.ram.delete(8);
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  }
+});
+//EventListner for 6gb ram
+document.getElementById("6gbram").addEventListener("change", () => {
+  let input = document.getElementById("6gbram");
+  if (input.checked) {
+    filterContent.ram.add(6);
+    createFilterCard("input ram");
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  } else {
+    filterContent.ram.delete(6);
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  }
+});
+//Event Listner for 12gb ram
+document.getElementById("12gbram").addEventListener("change", () => {
+  let input = document.getElementById("12gbram");
+  if (input.checked) {
+    filterContent.ram.add(12);
+    createFilterCard("input ram");
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  } else {
+    filterContent.ram.delete(12);
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  }
+});
+//Event listner for 16gbram
+document.getElementById("16gbram").addEventListener("change", () => {
+  let input = document.getElementById("16gbram");
+  if (input.checked) {
+    filterContent.ram.add(16);
+    createFilterCard("input ram");
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  } else {
+    filterContent.ram.delete(16);
+    filteredArray = applyFilterOnProducts(
+      filterContent,
+      filteredArray,
+      products,
+      CurrentSortMarker
+    );
+    clearUI();
+    updateUi(filteredArray, CurrentSortMarker);
+  }
+});
+
+function Pagination() {
+  let paginations = document.querySelectorAll(".paginationButton");
+  paginations.forEach((value) => {
+    value.addEventListener("click", () => {
+      let valueInnerHTML = value.innerHTML;
+      
+    });
+  });
+}
+
 fetchData()
   .then((data) => {
     header = data.header;

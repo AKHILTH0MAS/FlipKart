@@ -528,3 +528,27 @@ select {
   padding: 16px;
   border: 1px solid #e0e0e0;
 }
+.priceSliderBar{
+  height: 6px;
+  background: #2874f0;
+  transform-origin: left center;
+  position: absolute;
+  top: 4px;
+  width: 100%;
+  overflow-y: hidden;
+  transform: translate(0px) scaleX(0.995);
+}
+.paginationWrapper{
+  display: flex;
+  justify-content: center;
+}
+.pagination{
+  display: flex;
+}
+.paginationButton{
+  padding: 0 8px;
+  height:  32px;
+  width: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}

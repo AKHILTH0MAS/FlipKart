@@ -49,24 +49,21 @@
                   <div class="priceGraphItem" id="PriceGraphItem5"></div>
                 </div>
                 <div class="priceSliderWrapper">
-                  <div class="priceSlider">
-                    <input
-                      type="range"
-                      name="priceSlider"
-                      id="priceSliderInput"
-                      min="0"
-                      max="30000"
-                      step="5000"
-                      value="0"
-                    />
+                  <div class="priceSliderDot" id="priceSliderDot1">
+                    <div class="sliderDot"></div>
                   </div>
+                  <div class="priceSliderDot" id="priceSliderDot2">
+                    <div class="sliderDot"></div>
+                  </div>
+                  <div class="priceSliderBar"></div>
                 </div>
                 <div class="priceSliderDots">
-                  <div class="dot">.</div>
-                  <div class="dot">.</div>
-                  <div class="dot">.</div>
-                  <div class="dot">.</div>
-                  <div class="dot">.</div>
+                  <div class="dot" id="dot1">.</div>
+                  <div class="dot" id="dot2">.</div>
+                  <div class="dot" id="dot3">.</div>
+                  <div class="dot" id="dot4">.</div>
+                  <div class="dot" id="dot5">.</div>
+                  <div class="dot" id="dot6">.</div>
                 </div>
                 <div class="minMaxSelector">
                   <select name="min" id="SelectMin">
@@ -117,13 +114,6 @@
               </div>
             </div>
             <div class="selectCategory">
-              <div class="selectCategoryHeading">GST INVOICE AVAILABLE</div>
-              <div class="categoryCard">
-                <input type="checkbox" id="gstInput" />
-                <span>GST Invoice Available</span>
-              </div>
-            </div>
-            <div class="selectCategory">
               <div class="selectCategoryHeading">RAM</div>
               <div class="ramListing">
                 <div class="categoryCard">
@@ -131,40 +121,32 @@
                   <span>4 GB</span>
                 </div>
                 <div class="categoryCard">
-                  <input type="checkbox" id="3GB" />
+                  <input type="checkbox" id="3gbram" />
                   <span>3 GB</span>
                 </div>
                 <div class="categoryCard">
-                  <input type="checkbox" id="2GB" />
+                  <input type="checkbox" id="2gbram" />
                   <span>2 GB</span>
                 </div>
                 <div class="categoryCard">
-                  <input type="checkbox" id="1GB" />
+                  <input type="checkbox" id="1gbram" />
                   <span>1 GB and Below</span>
-                </div>   
-                <div class="categoryCard">
-                  <input type="checkbox" id="8GBAbove" />
-                  <span>8 GB and Above</span>
                 </div>
                 <div class="categoryCard">
-                  <input type="checkbox" id="6GB" />
+                  <input type="checkbox" id="8gbram" />
+                  <span>8 GB</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="6gbram" />
                   <span>6 GB</span>
                 </div>
                 <div class="categoryCard">
-                  <input type="checkbox" id="6GBAbove" />
-                  <span>6 GB Above</span>
-                </div>
-              </div>
-            </div>
-            <div class="selectCategory">
-              <div class="selectCategoryHeading">INTERNAL STORAGE</div>
-              <div class="internalStorageListing">
-                <div class="categoryCard">
-                  <input type="checkbox" id="256GB">
-                  <span>256 GB & Above</span>
+                  <input type="checkbox" id="12gbram" />
+                  <span>12 GB</span>
                 </div>
                 <div class="categoryCard">
-                  <input type="checkbox" id="128-255.9gb">
+                  <input type="checkbox" id="16gbram" />
+                  <span>16 GB</span>
                 </div>
               </div>
             </div>
@@ -196,6 +178,20 @@
           </div>
 
           <div class="mobilesContainerWrapper"></div>
+          <div class="paginationWrapper">
+            <div class="pagination">
+              <div class="paginationButton">1</div>
+              <div class="paginationButton">2</div>
+              <div class="paginationButton">3</div>
+              <div class="paginationButton">4</div>
+              <div class="paginationButton">5</div>
+              <div class="paginationButton">6</div>
+              <div class="paginationButton">7</div>
+              <div class="paginationButton">8</div>
+              <div class="paginationButton">9</div>
+              <div class="paginationButton">10</div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
