@@ -737,11 +737,15 @@ function Pagination() {
     paginations.appendChild(pageButton);
   }
   let paginationButtons = document.querySelectorAll(".paginationButton");
-
+  paginationButtons.forEach((value) => {
+    if (parseInt(value.innerHTML) == page) {
+      value.style.background = "#2874f0";
+      value.style.color = "#fff";
+    }
+  });
   paginationButtons.forEach((value) => {
     value.addEventListener("click", () => {
       page = value.innerHTML;
-      console.log(pa)
       let count = 24;
       if (page == 1) {
         let start = 0;
@@ -758,19 +762,15 @@ function Pagination() {
         clearUI();
         updateUi(arr, CurrentSortMarker);
       }
+      paginationButtons.forEach((value) => {
+        value.style.background = "#fff";
+        value.style.color = "#000";
+        if (parseInt(value.innerHTML) == page) {
+          value.style.background = "#2874f0";
+          value.style.color = "#fff";
+        }
+      });
     });
-  });
-
-  paginationButtons.forEach((value) => {
-    console.log(page);
-    value.style.background = '#fff';
-    value.style.color = '#000';
-    console.log(value.innerHTML)
-    if (value.innerHTML == page) {
-      
-      value.style.background = "#2874f0";
-      value.style.color = "#fff";
-    }
   });
 }
 fetchData()
