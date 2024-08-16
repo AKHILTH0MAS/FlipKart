@@ -548,6 +548,9 @@ select {
 .paginationButton{
   padding: 0 8px;
   height:  32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
   border-radius: 50%;
   cursor: pointer;

@@ -220,19 +220,24 @@ export function clearPriceRange() {
   selectMin.dispatchEvent(new Event("click"));
 }
 
-
 export function updateUi(products, CurrentSortMarker) {
   let id = document.getElementById(CurrentSortMarker);
   id.style.color = "#2874f0";
   for (let i = 0; i < products.length && i < 24; i++) {
     mobileCard(products[i]);
   }
+  document.scrollingElement.scrollTop = 0;
 }
 export function clearUI() {
   let mobilesContainer = document.querySelector(".mobilesContainerWrapper");
   mobilesContainer.innerHTML = "";
 }
-export function applyFilterOnProducts(filterContent, filteredArray, products,CurrentSortMarker) {
+export function applyFilterOnProducts(
+  filterContent,
+  filteredArray,
+  products,
+  CurrentSortMarker
+) {
   let filterHasdata = Object.values(filterContent).some((value) => {
     if (value instanceof Set && value.size > 0) {
       return true;
@@ -269,18 +274,14 @@ export function applyFilterOnProducts(filterContent, filteredArray, products,Cur
         ) {
           return false;
         }
-        if (
-          filterContent.ram.size > 0 &&
-          !filterContent.ram.has(product.ram)
-        ) {
+        if (filterContent.ram.size > 0 && !filterContent.ram.has(product.ram)) {
           return false;
         }
         return true;
       }
     });
-   return filteredArray;
+    return filteredArray;
   } else {
-   return filteredArray = [...products];
+    return (filteredArray = [...products]);
   }
-  
 }

@@ -18,7 +18,7 @@ import {
 
 let products = [];
 let header;
-let relevanceProducts = [];
+let page = 1;
 let filterContent = {
   brand: new Set(),
   priceRange: { min: null, max: null },
@@ -27,6 +27,7 @@ let filterContent = {
 };
 let filteredArray = [];
 let CurrentSortMarker = "relevance";
+
 // changing the color of the top teranery nav bar showing the sortby after another one is selected
 function sortByColorReset() {
   let sortItemClass = document.querySelectorAll(".sort-nav-item");
@@ -74,6 +75,7 @@ function addBrandsOnCategory(products) {
         );
         clearUI();
         updateUi(filteredArray, CurrentSortMarker);
+        Pagination();
       } else {
         filterContent.brand.delete(inputItem.value);
         createFilterCard(inputItem.className, filterContent);
@@ -85,6 +87,7 @@ function addBrandsOnCategory(products) {
         );
         clearUI();
         updateUi(filteredArray, CurrentSortMarker);
+        Pagination();
       }
     });
   });
@@ -103,6 +106,7 @@ document.getElementById("4").addEventListener("change", () => {
     );
     clearUI();
     updateUi(filteredArray, CurrentSortMarker);
+    Pagination();
   } else {
     filterContent.rating.delete(4);
     filteredArray = applyFilterOnProducts(
@@ -113,6 +117,7 @@ document.getElementById("4").addEventListener("change", () => {
     );
     clearUI();
     updateUi(filteredArray, CurrentSortMarker);
+    Pagination();
   }
 });
 // for selecting only on the three stared or above the
@@ -129,6 +134,7 @@ document.getElementById("3").addEventListener("change", () => {
     );
     clearUI();
     updateUi(filteredArray, CurrentSortMarker);
+    Pagination();
   } else {
     filterContent.rating.delete(3);
     filteredArray = applyFilterOnProducts(
@@ -139,6 +145,7 @@ document.getElementById("3").addEventListener("change", () => {
     );
     clearUI();
     updateUi(filteredArray, CurrentSortMarker);
+    Pagination();
   }
 });
 //event listner for the relevance
@@ -148,6 +155,7 @@ document.getElementById("relevance").addEventListener("click", () => {
   sortByColorReset();
   clearUI();
   updateUi(filteredArray, CurrentSortMarker);
+  Pagination();
 });
 //event listner for the Popularity
 document.getElementById("Popularity").addEventListener("click", () => {
@@ -156,6 +164,7 @@ document.getElementById("Popularity").addEventListener("click", () => {
   clearUI();
   CurrentSortMarker = "Popularity";
   updateUi(filteredArray, CurrentSortMarker);
+  Pagination();
 });
 //event listner for the Price to low to high
 document.getElementById("PriceLow").addEventListener("click", () => {
@@ -164,6 +173,7 @@ document.getElementById("PriceLow").addEventListener("click", () => {
   clearUI();
   CurrentSortMarker = "PriceLow";
   updateUi(filteredArray, CurrentSortMarker);
+  Pagination();
 });
 //eventListner for the newest first
 document.getElementById("NewestFirst").addEventListener("click", () => {
@@ -172,6 +182,7 @@ document.getElementById("NewestFirst").addEventListener("click", () => {
   CurrentSortMarker = "NewestFirst";
   clearUI();
   updateUi(filteredArray, CurrentSortMarker);
+  Pagination();
 });
 //event listner for the price high to low
 document.getElementById("PriceHigh").addEventListener("click", () => {
@@ -180,6 +191,7 @@ document.getElementById("PriceHigh").addEventListener("click", () => {
   clearUI();
   CurrentSortMarker = "PriceHigh";
   updateUi(filteredArray, CurrentSortMarker);
+  Pagination();
 });
 //resting the select tags
 document.getElementById("SelectMin").addEventListener("click", () => {
@@ -293,6 +305,7 @@ function createFilterCard(classNameList) {
           );
           clearUI();
           updateUi(filteredArray, CurrentSortMarker);
+          Pagination();
         }
       });
   } else if (className == "rating") {
@@ -349,6 +362,7 @@ function createFilterCard(classNameList) {
         );
         clearUI();
         updateUi(filteredArray, CurrentSortMarker);
+        Pagination();
       }
     });
   });
@@ -375,6 +389,7 @@ function createFilterCard(classNameList) {
         );
         clearUI();
         updateUi(filteredArray, CurrentSortMarker);
+        Pagination();
       }
     });
   });
@@ -400,6 +415,7 @@ function createFilterCard(classNameList) {
         );
         clearUI();
         updateUi(filteredArray, CurrentSortMarker);
+        Pagination();
       }
     });
   });
@@ -447,6 +463,7 @@ document.getElementById("SelectMin").addEventListener("change", () => {
   );
   clearUI();
   updateUi(filteredArray, CurrentSortMarker);
+  Pagination();
 });
 // evcent listner for  the select tags action
 document.getElementById("SelectMax").addEventListener("change", () => {
@@ -455,6 +472,7 @@ document.getElementById("SelectMax").addEventListener("change", () => {
   let SelectMin = document.getElementById("SelectMin");
   let SelectMinValue = parseInt(document.getElementById("SelectMin").value);
   let options = [0, 10000, 15000, 20000, 30000, 30001];
+  let clearPriceRange = document.getElementById("clearPriceRange");
   options.forEach((element) => {
     if (element < SelectMaxValue) {
       if (element == SelectMinValue) {
@@ -488,7 +506,6 @@ document.getElementById("SelectMax").addEventListener("change", () => {
     max: SelectMaxValue,
     min: SelectMinValue,
   };
-
   createFilterCard("SelectItem priceRange", filterContent);
   filteredArray = applyFilterOnProducts(
     filterContent,
@@ -498,6 +515,7 @@ document.getElementById("SelectMax").addEventListener("change", () => {
   );
   clearUI();
   updateUi(filteredArray, CurrentSortMarker);
+  Pagination();
 });
 // event listner for ram 4 gb
 document.getElementById("4gbram").addEventListener("change", () => {
@@ -513,6 +531,7 @@ document.getElementById("4gbram").addEventListener("change", () => {
     );
     clearUI();
     updateUi(filteredArray, CurrentSortMarker);
+    Pagination();
   } else {
     filterContent.ram.delete(4);
     filteredArray = applyFilterOnProducts(
@@ -707,17 +726,53 @@ document.getElementById("16gbram").addEventListener("change", () => {
     updateUi(filteredArray, CurrentSortMarker);
   }
 });
-
 function Pagination() {
-  let paginations = document.querySelectorAll(".paginationButton");
-  paginations.forEach((value) => {
+  let paginations = document.querySelector(".pagination");
+  paginations.innerHTML = "";
+  let countofPages = (filteredArray.length / 24).toFixed();
+  for (let i = 1; i < countofPages && i < 11; i++) {
+    let pageButton = document.createElement("div");
+    pageButton.className = "paginationButton";
+    pageButton.innerHTML = i;
+    paginations.appendChild(pageButton);
+  }
+  let paginationButtons = document.querySelectorAll(".paginationButton");
+
+  paginationButtons.forEach((value) => {
     value.addEventListener("click", () => {
-      let valueInnerHTML = value.innerHTML;
-      
+      page = value.innerHTML;
+      console.log(pa)
+      let count = 24;
+      if (page == 1) {
+        let start = 0;
+        let end = 24;
+        clearUI();
+        updateUi(filteredArray.slice(start, end), CurrentSortMarker);
+      } else {
+        let start = count * (page - 1) + 1;
+        let end = count * page;
+        let arr = filteredArray.slice(start, end);
+        if (arr.length == 0) {
+          arr = filteredArray.slice(1, 24).sort((a, b) => 0.5 - Math.random());
+        }
+        clearUI();
+        updateUi(arr, CurrentSortMarker);
+      }
     });
   });
-}
 
+  paginationButtons.forEach((value) => {
+    console.log(page);
+    value.style.background = '#fff';
+    value.style.color = '#000';
+    console.log(value.innerHTML)
+    if (value.innerHTML == page) {
+      
+      value.style.background = "#2874f0";
+      value.style.color = "#fff";
+    }
+  });
+}
 fetchData()
   .then((data) => {
     header = data.header;
