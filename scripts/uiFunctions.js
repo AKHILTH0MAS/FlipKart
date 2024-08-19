@@ -223,10 +223,35 @@ export function clearPriceRange() {
 export function updateUi(products, CurrentSortMarker) {
   let id = document.getElementById(CurrentSortMarker);
   id.style.color = "#2874f0";
-  for (let i = 0; i < products.length && i < 24; i++) {
-    mobileCard(products[i]);
+  if (products.length == 0) {
+    noResultfound();
+  } else {
+    for (let i = 0; i < products.length && i < 24; i++) {
+      mobileCard(products[i]);
+    }
   }
   document.scrollingElement.scrollTop = 0;
+}
+export function noResultfound() {
+  let mobileContainerWrapper = document.querySelector(
+    ".mobilesContainerWrapper"
+  );
+
+  let noResultFound = `<div class="noResultFound">
+                <div class="noResultFoundChild">
+                  <div class="noResultFoundImage">
+                    <img src="assets/images/error-no-search-results_2353c5.png" alt="no result found image">
+                  </div>
+                  <div class="noResultFoundHeading">
+                    Sorry, no results found!
+                  </div>
+                  <div class="noResultFoundText">
+                    Please check the spelling or try searching for something else
+                  </div>
+                </div>
+              </div>`;
+
+  mobileContainerWrapper.insertAdjacentHTML("beforeend", noResultFound);
 }
 export function clearUI() {
   let mobilesContainer = document.querySelector(".mobilesContainerWrapper");

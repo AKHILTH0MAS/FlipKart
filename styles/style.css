@@ -582,3 +582,22 @@ select {
   font-family: var(--roboto);
   font-weight: 500;
 }
+.noResultFound {
+  padding: 50px;
+}
+.noResultFoundChild {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.noResultFoundHeading {
+  font-size: 26px;
+  font-weight: 500;
+  font-family: var(--semibold);
+  margin: 20px 0 10px;
+}
+.noResultFoundText {
+  font-size: 20px;
+  color: #878787;
+  margin-bottom: 8px;
+}
