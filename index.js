@@ -259,8 +259,11 @@ document.getElementById("SelectMax").addEventListener("click", () => {
 //create filter card showing on the top of the filters heading
 function createFilterCard(classNameList) {
   let filterContainer = document.querySelector(".filter-content");
-  filterContainer.innerHTML = "";
   let className = classNameList.split(" ")[1];
+
+  // Remove existing filter cards for the specific className
+  let existingCards = filterContainer.querySelectorAll(`.${className}`);
+  existingCards.forEach((card) => card.closest(".filtercard").remove());
 
   if (className == "brand") {
     filterContent.brand.forEach((element) => {
@@ -286,36 +289,9 @@ function createFilterCard(classNameList) {
     }</span>
       </div>`;
     filterContainer.insertAdjacentHTML("afterbegin", filterCardItem);
-    document
-      .querySelector(".closeButtonpriceRange")
-      .addEventListener("click", (e) => {
-        let cardToRemove = e.target.closest(".filtercard");
-        if (cardToRemove) {
-          filterContent.priceRange = {
-            min: null,
-            max: null,
-          };
-          cardToRemove.remove();
-          clearPriceRange();
-          filteredArray = applyFilterOnProducts(
-            filterContent,
-            filteredArray,
-            products,
-            CurrentSortMarker
-          );
-          clearUI();
-          updateUi(filteredArray, CurrentSortMarker);
-          Pagination();
-        }
-      });
   } else if (className == "rating") {
     filterContent.rating.forEach((value) => {
-      let item;
-      if (value == "4") {
-        item = "4★ & above";
-      } else {
-        item = "3★ & above";
-      }
+      let item = value == "4" ? "4★ & above" : "3★ & above";
       let filterCardItem = ` 
       <div class="filtercard">
         <span class="closeButtonRating"> ✕ </span>
@@ -325,23 +301,22 @@ function createFilterCard(classNameList) {
     });
   } else if (className == "ram") {
     filterContent.ram.forEach((value) => {
-      let filterCardItem;
-      if (value == 1) {
-        filterCardItem = `
-          <div class="filtercard">
-            <span class="closeButtonRam"> ✕ </span>
-            <span class="${className}">1 GB and Below</span>
-            </div>`;
-      } else {
-        filterCardItem = `
+      let filterCardItem = `
         <div class="filtercard">
           <span class="closeButtonRam"> ✕ </span>
-          <span class="${className}">${value} GB</span>
+          <span class="${className}">${
+        value == 1 ? "1 GB and Below" : `${value} GB`
+      }</span>
         </div>`;
-      }
       filterContainer.insertAdjacentHTML("afterbegin", filterCardItem);
     });
   }
+
+  // Re-attach event listeners to the close buttons for each filter type
+  attachCloseButtonListeners();
+}
+
+function attachCloseButtonListeners() {
   let closebuttonBrands = document.querySelectorAll(".closeButtonBrand");
   closebuttonBrands.forEach((element) => {
     element.addEventListener("click", (event) => {
@@ -354,18 +329,11 @@ function createFilterCard(classNameList) {
         if (correspondingCheckbox) {
           correspondingCheckbox.checked = false;
         }
-        filteredArray = applyFilterOnProducts(
-          filterContent,
-          filteredArray,
-          products,
-          CurrentSortMarker
-        );
-        clearUI();
-        updateUi(filteredArray, CurrentSortMarker);
-        Pagination();
+        updateUIAfterFilterChange();
       }
     });
   });
+
   let closeButtonRating = document.querySelectorAll(".closeButtonRating");
   closeButtonRating.forEach((element) => {
     element.addEventListener("click", (event) => {
@@ -374,25 +342,17 @@ function createFilterCard(classNameList) {
         let value = parseInt(
           cardToRemove.querySelector(".rating").textContent.trim().split("")[0]
         );
-
         filterContent.rating.delete(value);
         cardToRemove.remove();
         let correspondingCheckbox = document.getElementById(value);
         if (correspondingCheckbox) {
           correspondingCheckbox.checked = false;
         }
-        filteredArray = applyFilterOnProducts(
-          filterContent,
-          filteredArray,
-          products,
-          CurrentSortMarker
-        );
-        clearUI();
-        updateUi(filteredArray, CurrentSortMarker);
-        Pagination();
+        updateUIAfterFilterChange();
       }
     });
   });
+
   let closeButtonRam = document.querySelectorAll(".closeButtonRam");
   closeButtonRam.forEach((element) => {
     element.addEventListener("click", (event) => {
@@ -407,19 +367,12 @@ function createFilterCard(classNameList) {
         if (correspondingCheckbox.checked) {
           correspondingCheckbox.checked = false;
         }
-        filteredArray = applyFilterOnProducts(
-          filterContent,
-          filteredArray,
-          products,
-          CurrentSortMarker
-        );
-        clearUI();
-        updateUi(filteredArray, CurrentSortMarker);
-        Pagination();
+        updateUIAfterFilterChange();
       }
     });
   });
 }
+
 // evcent listner for  the select tags action
 document.getElementById("SelectMin").addEventListener("change", () => {
   let selectMin = document.getElementById("SelectMin");
