@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/20150528-140547-favicon-retina.ico"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <nav>
@@ -17,61 +22,182 @@
     <main>
       <div class="main-section">
         <div class="filter-container">
-          <div class="filter-heading">
-            <h2>Filters</h2>
-          </div>
-          <div class="filter-categories">
-            <p>CATEGORIES</p>
-            <div class="category-1">
-              <img src="assets/images/caret-right87.svg" alt="" />
-              <span>Mobiles & Accessories</span>
+          <div class="filter-container-child">
+            <div class="filter-heading">
+              <h2>Filters</h2>
+              <div class="filter-content"></div>
             </div>
-            <div class="category-2">
-              <img src="assets/images/caret-right.svg" alt="" />
-              <span>Mobiles</span>
+            <div class="filter-categories">
+              <p>CATEGORIES</p>
+              <div class="category-1">
+                <img src="assets/images/caret-right87.svg" alt="" />
+                <span>Mobiles & Accessories</span>
+              </div>
+              <div class="category-2">
+                <img src="assets/images/caret-right.svg" alt="" />
+                <span>Mobiles</span>
+              </div>
             </div>
-          </div>
-          <div class="filter-price-slider">
-            <h2 class="price-heading">PRICE</h2>
-            <div class="slidecontainer">
-              <input
-                type="range"
-                min="1"
-                max="100"
-                value="50"
-                class="slider"
-                id="myRange"
-              />
+            <div class="filter-price-slider">
+              <div>
+                <h2 class="price-heading">PRICE</h2>
+                <div id="clearPriceRange"></div>
+              </div>
+              <div class="price-slider-graph">
+                <div class="priceGraph">
+                  <div class="priceGraphItem" id="PriceGraphItem1"></div>
+                  <div class="priceGraphItem" id="PriceGraphItem2"></div>
+                  <div class="priceGraphItem" id="PriceGraphItem3"></div>
+                  <div class="priceGraphItem" id="PriceGraphItem4"></div>
+                  <div class="priceGraphItem" id="PriceGraphItem5"></div>
+                </div>
+                <div class="priceSliderWrapper">
+                  <div class="priceSliderDot" id="priceSliderDot1">
+                    <div class="sliderDot"></div>
+                  </div>
+                  <div class="priceSliderDot" id="priceSliderDot2">
+                    <div class="sliderDot"></div>
+                  </div>
+                  <div class="priceSliderBar"></div>
+                </div>
+                <div class="priceSliderDots">
+                  <div class="dot" id="dot1">.</div>
+                  <div class="dot" id="dot2">.</div>
+                  <div class="dot" id="dot3">.</div>
+                  <div class="dot" id="dot4">.</div>
+                  <div class="dot" id="dot5">.</div>
+                  <div class="dot" id="dot6">.</div>
+                </div>
+                <div class="minMaxSelector">
+                  <select name="min" id="SelectMin">
+                    <option value="0">Min</option>
+                    <option value="10000">₹10000</option>
+                    <option value="15000">₹15000</option>
+                    <option value="20000">₹20000</option>
+                    <option value="30000">₹30000</option>
+                  </select>
+
+                  <span>to</span>
+
+                  <select name="max" id="SelectMax">
+                    <option value="10000">₹10000</option>
+                    <option value="15000">₹15000</option>
+                    <option value="20000">₹20000</option>
+                    <option value="30000">₹30000</option>
+                    <option value="30001" selected>₹30000+</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="selectCategory">
+              <div class="selectCategoryHeading">BRAND</div>
+              <div class="searchBrandInput">
+                <img src="assets/images/searchIconSmall.svg" alt="" />
+                <input
+                  type="text"
+                  class="searchBrand"
+                  placeholder="Search Brand"
+                />
+              </div>
+              <div class="brandsListing"></div>
+            </div>
+            <div class="selectCategory">
+              <div class="selectCategoryHeading padding-bottom-16">
+                CUSTOMER RATING
+              </div>
+              <div class="customerRatingList">
+                <div class="categoryCard">
+                  <input type="checkbox" id="4" />
+                  <span>4★ & above</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="3" />
+                  <span>3★ & above</span>
+                </div>
+              </div>
+            </div>
+            <div class="selectCategory">
+              <div class="selectCategoryHeading">RAM</div>
+              <div class="ramListing">
+                <div class="categoryCard">
+                  <input class="" type="checkbox" id="4gbram" />
+                  <span>4 GB</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="3gbram" />
+                  <span>3 GB</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="2gbram" />
+                  <span>2 GB</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="1gbram" />
+                  <span>1 GB and Below</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="8gbram" />
+                  <span>8 GB</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="6gbram" />
+                  <span>6 GB</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="12gbram" />
+                  <span>12 GB</span>
+                </div>
+                <div class="categoryCard">
+                  <input type="checkbox" id="16gbram" />
+                  <span>16 GB</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="mobileContainer" id="mobileContainer">
-          <div class="pageLocationHeader">
-            <div class="pageLocation"></div>
+        <div class="mobileContainerWrapper">
+          <div class="mobileContainer" id="mobileContainer">
+            <div class="pageLocationHeader">
+              <div class="pageLocation"></div>
 
-          <div class="searchDataHeader" id="searchDataHeader">
-            <span>
-              Showing <span id="searchHeadingData"></span> results for
-              <span id="searchHeadingProduct"></span
-            ></span>
+              <div class="searchDataHeader" id="searchDataHeader">
+                <span>
+                  Showing <span id="searchHeadingData"></span> results for
+                  <span id="searchHeadingProduct"></span
+                ></span>
+              </div>
+
+              <div class="sort-nav" id="sort-nav">
+                <div class="sort-nav-heading">Sort By</div>
+                <div class="sort-nav-item" id="relevance">Relevance</div>
+                <div class="sort-nav-item" id="Popularity">Popularity</div>
+                <div class="sort-nav-item" id="PriceLow">
+                  Price -- Low to High
+                </div>
+                <div class="sort-nav-item" id="PriceHigh">
+                  Price -- High to Low
+                </div>
+                <div class="sort-nav-item" id="NewestFirst">Newest First</div>
+              </div>
+            </div>
+
+            <div class="mobilesContainerWrapper">
+          
+            </div>
           </div>
-
-          <div class="sort-nav" id="sort-nav">
-            <div class="sort-nav-heading">Sort By</div>
-            <div class="sort-nav-item" id="relevance">Relevance</div>
-            <div class="sort-nav-item" id="Popularity">Popularity</div>
-            <div class="sort-nav-item" id="PriceLow">Price -- Low to High</div>
-            <div class="sort-nav-item" id="PriceHigh">Price -- High to Low</div>
-            <div class="sort-nav-item" id="NewestFirst">Newest First</div>
+          <div class="paginationWrapper">
+            <div class="pagination"></div>
           </div>
-      </div>
-
-          <div class="mobilesContainerWrapper">
-            
+          <div class="findWhatYouLookingFor">
+            <div class="findWhatText">
+              Did you find what you were looking for?
+            </div>
+            <div class="findWhatButton">Yes</div>
+            <div class="findWhatButton">No</div>
           </div>
         </div>
       </div>
     </main>
   </body>
-  <script  type="module" src="index.js"></script>
+  <script type="module" src="index.js"></script>
 </html>

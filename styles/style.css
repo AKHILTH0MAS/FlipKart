@@ -195,16 +195,41 @@ body {
   background: #f1f3f6;
 }
 .filter-container {
-  background: #fff;
   min-width: 270px;
+  max-width: 270px;
   margin-right: 10px;
 }
+.filter-container-child {
+  background: #fff;
+}
 .filter-heading h2 {
-  padding: 16px 16px 12px;
   font-size: 18px;
   font-family: var(--semibold);
   font-weight: 500;
+}
+.filter-heading {
+  padding: 16px 16px 12px;
   border-bottom: 1px solid #f0f0f0;
+}
+.filtercard {
+  cursor: pointer;
+  font-size: 12px;
+  background-color: #e0e0e0;
+  box-shadow: 0 2px 4px 0 hsla(0, 0%, 100%, 0.5);
+  border-radius: 3px;
+  margin: 2px 4px;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 200px;
+  padding: 8px;
+}
+.fliterCardSpan {
+  margin-left: 8px;
+}
+.filter-content {
+  margin: 8px 0 0 -4px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .filter-categories {
   padding: 16px;
@@ -253,18 +278,17 @@ body {
   font-weight: 400;
   color: #878787;
 }
-.pagelocationSpan{
+.pagelocationSpan {
   display: block;
   width: 80px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.pagelocationSpan:hover{
+.pagelocationSpan:hover {
   width: fit-content;
-
 }
-.pageLocation span:hover{
+.pageLocation span:hover {
   color: #2874f0;
 }
 .searchDataHeader {
@@ -411,4 +435,169 @@ body {
   font-family: var(--semibold);
   margin-top: 5px;
   color: #26a541;
+}
+.priceGraph {
+  height: 25px;
+  width: 100%;
+  position: relative;
+  bottom: -6px;
+  background: #e0e0e0;
+  z-index: 1;
+}
+.priceSliderWrapper {
+  position: relative;
+}
+#priceSliderInput {
+  position: relative;
+  width: 100%;
+  z-index: 3;
+}
+.priceSliderDots {
+  margin-top: -12px;
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.minMaxSelector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+}
+.dot {
+  height: 25px;
+  color: #878787;
+}
+select {
+  flex-grow: 2;
+  background: #fff;
+  padding: 0 5px;
+  height: 24px;
+  font-size: 13px;
+  outline: none;
+  letter-spacing: 0.1px;
+  border: 1px solid #e0e0e0;
+}
+#SelectMax {
+  flex-grow: 2;
+}
+.minMaxSelector span {
+  font-size: 13px;
+  margin: 0 9px;
+  color: #878787;
+  text-align: center;
+  flex: 1;
+}
+.selectCategoryHeading {
+  font-family: var(--semibold);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.searchBrand {
+  border: none;
+  color: #878787;
+  font-size: 12px;
+  padding-left: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.searchBrandInput {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 7px;
+}
+.categoryCard span {
+  font-size: 13px;
+  padding-left: 5px;
+  line-height: 14px;
+  font-size: 500;
+  color: #212121;
+  font-family: var(--regular);
+}
+.categoryCard {
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+}
+.padding-bottom-16 {
+  padding-bottom: 16px;
+}
+.selectCategory {
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+}
+.priceSliderBar {
+  height: 6px;
+  background: #2874f0;
+  transform-origin: left center;
+  position: absolute;
+  top: 4px;
+  width: 100%;
+  overflow-y: hidden;
+  transform: translate(0px) scaleX(0.995);
+}
+.paginationWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #fff;
+}
+.pagination {
+  display: flex;
+}
+.paginationButton {
+  padding: 0 8px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.mobileContainerWrapper {
+  width: 100%;
+}
+.findWhatYouLookingFor {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+.findWhatText {
+  font-family: var(--roboto);
+  font-weight: 500;
+  font-size: 16px;
+}
+.findWhatButton {
+  padding: 6px 28px;
+  margin-left: 8px;
+  border: 1px solid #d7d7d7;
+  border-radius: 2px;
+  font-size: 16px;
+  font-family: var(--roboto);
+  font-weight: 500;
+}
+.noResultFound {
+  padding: 50px;
+}
+.noResultFoundChild {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.noResultFoundHeading {
+  font-size: 26px;
+  font-weight: 500;
+  font-family: var(--semibold);
+  margin: 20px 0 10px;
+}
+.noResultFoundText {
+  font-size: 20px;
+  color: #878787;
+  margin-bottom: 8px;
 }
