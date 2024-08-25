@@ -7,6 +7,7 @@ import {
   updateUi,
   applyFilterOnProducts,
   clearUI,
+  footer
 } from "./scripts/uiFunctions.js";
 import {
   sortAscendingOrder,
@@ -44,6 +45,7 @@ async function main(data) {
   updateUi(filteredArray, CurrentSortMarker);
   addBrandsOnCategory(products);
   Pagination();
+  footer(data.footer);
 }
 // adding brands on the side bar
 function addBrandsOnCategory(products) {

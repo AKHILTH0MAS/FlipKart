@@ -1,0 +1,6 @@
+doordash :   https://door-dash-akhil-clone.vercel.app/
+ubereats :   https://uber-eats-azure.vercel.app/
+yelp     :   https://yelp-six.vercel.app/
+spotify  :   https://spotify-snowy-ten.vercel.app/
+airbnb   :   https://airbnb-lamda-alpha.vercel.app/
+Azure    :   https://azure-microsoft.vercel.app/

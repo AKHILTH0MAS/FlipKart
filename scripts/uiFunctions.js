@@ -55,9 +55,11 @@ export function navBar(nav) {
 
 export function secondaryNavBar(data) {
   let nav = document.querySelector("nav");
+  let secondaryNavBarWrapper = `<div class="secondaryNavBarWrapper"><span></span></div>`;
   let secondaryNavbar = document.createElement("div");
   secondaryNavbar.className = "secondary-nav";
   nav.appendChild(secondaryNavbar);
+  secondaryNavbar.insertAdjacentHTML("afterend", secondaryNavBarWrapper);
 
   let secondaryNavChild = document.createElement("div");
   secondaryNavChild.className = "secondary-nav-child";
@@ -73,7 +75,7 @@ export function secondaryNavBar(data) {
       <div class="secondary-nav-item">
         <span>${element}</span>
       </div>`;
-    if (index < data.navitem.length - 2) {
+    if (index < data.navitem.length - 3) {
       secondaryNavChild.insertAdjacentHTML("beforeend", secondaryNavItem);
     } else {
       secondaryNavChild.insertAdjacentHTML("beforeend", secondaryNavItem2);
@@ -309,4 +311,17 @@ export function applyFilterOnProducts(
   } else {
     return (filteredArray = [...products]);
   }
+}
+export function footer(footerData) {
+  // let footer = document.querySelector("footer");
+  // let footerChild = document.createElement("div");
+  // footerChild.className = "footerchild";
+  // footer.appendChild(footerChild);
+  // let footerElementItems;
+  // footerData.footerItemPart1.forEach((element) => {
+  //   footerElementItems = "";
+  //   let footerElement = `<div class="footerItemHeading">${element.heading}</div>`;
+    
+  //   footerElementItems = footer
+  // });
 }

@@ -1,38 +1,39 @@
 {
-    "product": "Mobiles",
-    "pageLocation": "Mobile & Accesories",
+  "product": "Mobiles",
+  "pageLocation": "Mobile & Accesories",
 
   "nav": {
     "logo": {
       "logoImg": "assets/images/flipkart-plus.png",
       "logoText1": "Explore",
-      "logoText2": "plus",
+      "logoText2": "Plus",
       "logoSvg": "assets/images/plus_aef861.png"
     },
     "searchplaceHolder": "mobiles",
-    "searchIcon":"assets/images/search-icon.svg",
+    "searchIcon": "assets/images/search-icon.svg",
     "loginButton": "Login",
-    "StanderdButton":[
+    "StanderdButton": [
       {
         "text": "Become a Seller",
         "image": null,
         "before": "false"
-      },{
+      },
+      {
         "text": "More",
         "id": "caret",
-        "image":"assets/images/caret-right.svg",
+        "image": "assets/images/caret-right.svg",
         "before": false
       },
       {
         "text": "Cart",
         "id": "cart",
-        "image":"assets/images/cart.svg",
-        "before":true
+        "image": "assets/images/cart.svg",
+        "before": true
       }
     ]
   },
-  "secondaryNav":{
-    "navitem":[
+  "secondaryNav": {
+    "navitem": [
       "Electronics",
       "TVs & Appliances",
       "Men",
@@ -41,7 +42,8 @@
       "Home & Furniture",
       "Sports, Books & More",
       "Flights",
-      "Offer Zone"
+      "Offer Zone",
+      "Grocery"
     ],
     "caretDown": "assets/images/caret-down.svg"
   },
@@ -49,228 +51,81 @@
     "searchHeadingProduct": "mobiles",
     "category": ["SAMSUNG", "vivo", "OPPO", "realme", "POCO", "MOTOROLA"]
   },
-  "mobile": [
-    {
-      "id": "1",
-      "mobileName": "REDMI 13C (Starshine Green, 128 GB)",
-      "rating": "4.2",
-      "ratingNumbers": "33,042 Ratings & 1,389 Reviews",
-      "mobileImage": "assets/images/mobiles/redmi13c.jpeg",
-      "price": "7,699",
-      "specification": [
-        { "spec": "4 GB RAM | 128 GB ROM | 1 TB" },
-        { "spec": "17.12 cm (6.74 Inch) HD+ Display" },
-        { "spec": "50MP Rear Camera | 8MP Front Camera" },
-        { "spec": "5000 mAh Battery" },
-        { "spec": "Hello G85 Processor" },
-        {
-          "spec": "1 Year Manufacturer Warranty for Phone and 6 Months Warranty for in the Box Accesories"
-        }
-      ],
-      "discount": "11,999",
-      "off": "35% off",
-      "saveExtra": "Save extra with combo offers",
-      "bankOffer": "Bank Offer"
+  "footer": {
+    "footerItemPart1": [
+      {
+        "heading": "About",
+        "content": [
+          "Contact Us",
+          "About Us",
+          "Careers",
+          "Flipkart Stories",
+          "Press",
+          "Corporate Information"
+        ]
+      },
+      {
+        "heading": "Group Companies",
+        "content": ["Myntra", "Cleartrip", "Shopsy"]
+      },
+      {
+        "heading": "Help",
+        "content": [
+          "Payment",
+          "Shipping",
+          "Cancellation & Returns",
+          "FAQ",
+          "Report Infrigement"
+        ]
+      },
+      {
+        "heading": "Consuumer Policy",
+        "content": [
+          "Cancellation & Returns",
+          "Terms Of Use",
+          "Security",
+          "Privacy",
+          "Sitemap",
+          "Grievance Readressal",
+          "EPR Compliance"
+        ]
+      }
+    ],
+    "footerItemPart2": {
+      "Mailus": {
+        "heading": "Mail Us",
+        "address": "FlipKart Internet Private Limited,Buildings Alyssa, Begonia &  Clove Embassy Tech Village, Outer Ring Road, Devarabeesanahalli Village, Bengaluru, 560103, Karnataka, India"
+      },
+      "RegisteredOffice": {
+        "heading": "Registered Office Address",
+        "address": "Flipkart Internet Private Limited, Buildings Alyssa, Begonia & Clone Embassy Tech Village, Outer Ring Road, Devarabeesanahalli Village, Bengaluru, 560103, Karnataka, India CIN : U51109KA2012PTC066107 Telephone: 044-45614700 / 044-67415800"
+      }
     },
-    {
-      "id": "2",
-
-      "mobileName": "POCO M6 Pro 5G (Power Black, 128 GB)",
-      "rating": "4.3",
-      "ratingNumbers": "76,836 Ratings & 5,002 Reviews",
-      "mobileImage": "assets/images/mobiles/pocom6powerblck.jpeg",
-      "price": "11,999",
-      "specification": [
-        { "spec": "4 GB RAM | 128 GB ROM | 1 TB" },
-        { "spec": "17.25 cm (6.79 Inch) Full HD+ Display" },
-        { "spec": "50MP + 2MP | 8MP Front Camera" },
-        { "spec": "5000 mAh Battery" },
-        { "spec": "Snapdragon 4 Gen 2 Processor" },
+    "footerItemPart3": {
+      "content": [
         {
-          "spec": "1 Year Manufacturer Warranty for Phone and 6 Months Warranty for in the Box Accesories"
-        }
-      ],
-      "discount": "15,999",
-      "off": "25% off",
-      "saveExtra": "Save extra with combo offers",
-      "bankOffer": "Bank Offer"
-    },
-    {
-      "id": "3",
-
-      "mobileName": "REDMI 13C (Stardust Black, 128 GB)",
-      "rating": "4.2",
-      "ratingNumbers": "33,042 Ratings & 1,389 Reviews",
-      "mobileImage": "assets/images/mobiles/redmi13cblack.jpeg",
-      "price": "7,699",
-      "specification": [
-        { "spec": "4 GB RAM | 128 GB ROM | 1 TB" },
-        { "spec": "17.12 cm (6.74 Inch) HD+ Display" },
-        { "spec": "50MP Rear Camera | 8MP Front Camera" },
-        { "spec": "5000 mAh Battery" },
-        { "spec": "Hello G85 Processor" },
+          "content": "Become a Seller",
+          "image": "assets/images/coverImage.svg"
+        },
         {
-          "spec": "1 Year Manufacturer Warranty for Phone and 6 Months Warranty for in the Box Accesories"
-        }
-      ],
-      "discount": "11,999",
-      "off": "35% off",
-      "saveExtra": "Save extra with combo offers",
-      "bankOffer": "Bank Offer"
-    },
-    {
-      "id": "4",
-            "mobileName": "Motorola Edge 50 Fusion (Marshmallow Blue, 256 GB)",
-      "rating": "4.5",
-      "ratingNumbers": "22,662 Ratings & 1,605 Reviews",
-      "mobileImage": "assets/images/mobiles/motorolaedge50fusionmarshmellow256.jpeg",
-      "price": "24,999",
-      "specification": [
-        { "spec": "12 GB RAM | 256 GB ROM " },
-        { "spec": "17.02 cm (6.7 Inch) HD+ Display" },
-        { "spec": "50MP + 13MP | 32MP Front Camera" },
-        { "spec": "5000 mAh Battery" },
-        { "spec": "7s Gen 2 Processor" },
+          "content": "Advertise",
+          "image": "assets/images/advertise.svg"
+        },
         {
-          "spec": "1 Year on Handset and 6 Months on Accesories"
-        }
-      ],
-      "discount": "27,999",
-      "off": "10% off",
-      "saveExtra": "",
-      "bankOffer": ""
-    },
-    {
-      "id": "5",
-      "mobileName": "POCO M6 Pro 5G (Power Black, 128 GB)",
-      "rating": "4.3",
-      "ratingNumbers": "1,19,006 Ratings & 7,330 Reviews",
-      "mobileImage": "assets/images/mobiles/pocom6powerblck.jpeg",
-      "price": "12,999",
-      "specification": [
-        { "spec": "6 GB RAM | 128 GB ROM | Expandable Upto 1 TB" },
-        { "spec": "17.25 cm (6.79 Inch) Full HD+ Display" },
-        { "spec": "50MP + 2MP | 8MP Front Camera" },
-        { "spec": "5000 mAh Battery" },
-        { "spec": "Snapdragon 4 Gen 2 Processor" },
+          "content": "Gift Cards",
+          "image": "assets/images/giftcard.svg"
+        },
         {
-          "spec": "1 Year Manufacturer Warranty for Phone and 6 Months Warranty for in the Box Accesories"
-        }
-      ],
-      "discount": "16,999",
-      "off": "23% off",
-      "saveExtra": "Save extra with combo offers",
-      "bankOffer": "Bank Offer"
-    },
-
-    {
-      "id": "6",
-      
-      "mobileName": "Motorola G34 5G (Ice Blue, 128 GB)",
-      "rating": "4.3",
-      "ratingNumbers": "1,10,881 Ratings & 7,330 Reviews",
-      "mobileImage": "assets/images/mobiles/motorolag34iceBlue.jpeg",
-      "price": "11,999",
-      "specification": [
-        { "spec": "8 GB RAM | 128 GB ROM " },
-        { "spec": "16.51 cm (6.5 Inch) HD+ Display" },
-        { "spec": "50MP + 2MP | 16MP Front Camera" },
-        { "spec": "5000 mAh Battery" },
-        { "spec": "Snapdragon 695 5G Processor" },
+          "content": "Help Center",
+          "image": "assets/images/helpcentre.svg"
+        },
         {
-          "spec": "1 Year on Handset and 6 Months on Accesories"
-        }
-      ],
-      "discount": "14,999",
-      "off": "20% off",
-      "saveExtra": "Save extra with combo offers",
-      "bankOffer": "Bank Offer"
-    },
-    {
-      "id":"7",
-      "mobileName": "Motorola G34 5G (Ocean Green, 128 GB)",
-      "rating": "4.2",
-      "ratingNumbers": "1,10,881 Ratings & 7,864 Reviews",
-      "mobileImage": "assets/images/mobiles/motorolag34iceBlue.jpeg",
-      "price": "11,999",
-      "specification": [
-        { "spec": "8 GB RAM | 128 GB ROM " },
-        { "spec": "16.51 cm (6.5 Inch) HD+ Display" },
-        { "spec": "50MP + 2MP | 16MP Front Camera" },
-        { "spec": "5000 mAh Battery" },
-        { "spec": "Snapdragon 695 5G Processor" },
-        { "spec": "Vegan Leather Design" },
+          "content": "© 2007-2024 <span> Flipkart.com</span>"
+        },
         {
-          "spec": "1 Year on Handset and 6 Months on Accesories"
+          "image": "assets/images/payment.svg"
         }
-      ],
-      "discount": "14,999",
-      "off": "20% off",
-      "saveExtra": "Save extra with combo offers",
-      "bankOffer": "Bank Offer"
-    },
-    {
-      "mobileName": "vivo T3x 5G (Celestial Green, 128 GB)",
-      "rating": "4.5",
-      "ratingNumbers": "39,811 Ratings & 1,242 Reviews",
-      "mobileImage": "assets/images/mobiles/t3x-5g-v2338-vivo-original-imahyyzaqhgwzfup.jpeg",
-      "price": "14,999",
-      "specification": [
-        { "spec": "6 GB RAM | 128 GB ROM | Expandable Upto 1 TB" },
-        { "spec": "17.07 cm (6.72 Inch) Full HD+ Display" },
-        { "spec": "50MP + 2MP | 18MP Front Camera" },
-        { "spec": "6000 mAh Battery" },
-        { "spec": "6 Gen 1 Processor" },
-        {
-          "spec": "1 Year Manufacturer Warranty for Device and 6 Months Warranty for  Inbox Accesories"
-        }
-      ],
-      "discount": "10,999",
-      "off": "21% off",
-      "saveExtra": "Save extra with combo offers",
-      "bankOffer": "Only few left"
-    },
-    {
-      "mobileName": "vivo T3x 5G (Celestial Green, 128 GB)",
-      "rating": "4.4",
-      "ratingNumbers": "8,971 Ratings & 419 Reviews",
-      "mobileImage": "assets/images/mobiles/t3x-5g-v2338-vivo-original-imahyyzaqhgwzfup.jpeg",
-      "price": "16,499",
-      "specification": [
-        { "spec": "8 GB RAM | 128 GB ROM | Expandable Upto 1 TB" },
-        { "spec": "17.07 cm (6.72 Inch) Full HD+ Display" },
-        { "spec": "50MP + 2MP | 18MP Front Camera" },
-        { "spec": "6000 mAh Battery" },
-        { "spec": "6 Gen 1 Processor" },
-        {
-          "spec": "1 Year Manufacturer Warranty for Device and 6 Months Warranty for  Inbox Accesories"
-        }
-      ],
-      "discount": "20,499",
-      "off": "19% off",
-      "saveExtra": "Daily Saver",
-      "bankOffer": "Bank Offer"
-    },
-    {
-      "mobileName": "vivo T3x 5G (Crimson Bliss, 128 GB)",
-      "rating": "4.4",
-      "ratingNumbers": "8,971 Ratings & 419 Reviews",
-      "mobileImage": "assets/images/mobiles/-original-imahyytukhkky5ew.jpeg",
-      "price": "16,499",
-      "specification": [
-        { "spec": "8 GB RAM | 128 GB ROM | Expandable Upto 1 TB" },
-        { "spec": "17.07 cm ( 6.72 Inch) Full HD+ Display" },
-        { "spec": "50MP + 2MP | 18MP Front Camera" },
-        { "spec": "6000 mAh Battery" },
-        { "spec": "6 Gen 1 Processor" },
-        {
-          "spec": "1 Year Manufacturer Warranty for Device and 6 Months Warranty for  Inbox Accesories"
-        }
-      ],
-      "discount": "20,499",
-      "off": "19% off",
-      "saveExtra": "Daily Saver",
-      "bankOffer": "Bank Offer"
+      ]
     }
-  ]
+  }
 }
