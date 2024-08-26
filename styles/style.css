@@ -226,9 +226,14 @@ body {
   padding: 16px 16px 12px;
   border-bottom: 1px solid #f0f0f0;
 }
+.filtercard span {
+  font-size: 12px;
+  line-height: normal;
+  font-family: var(--regular);
+  letter-spacing: 0.1px;
+}
 .filtercard {
   cursor: pointer;
-  font-size: 12px;
   background-color: #e0e0e0;
   box-shadow: 0 2px 4px 0 hsla(0, 0%, 100%, 0.5);
   border-radius: 3px;

@@ -229,6 +229,8 @@ export function updateUi(products, CurrentSortMarker) {
   id.style.color = "#2874f0";
   id.style.borderBottom = '2px solid #2374f0';
   id.style.fontFamily = "Inter-semibold";
+  let searchHeadingData = document.getElementById("searchHeadingData");
+  searchHeadingData.innerHTML = `1 - 24 of ${products.length}`;
   if (products.length == 0) {
     noResultfound();
   } else {

@@ -33,6 +33,7 @@ function sortByColorReset() {
   let sortItemClass = document.querySelectorAll(".sort-nav-item");
   sortItemClass.forEach((element) => {
     element.style.color = "#000";
+    element.style.borderBottom = "2px solid transparent";
   });
 }
 // lol main function
@@ -40,7 +41,7 @@ async function main(data) {
   filteredArray = [...products];
   navBar(data.nav);
   secondaryNavBar(data.secondaryNav);
-  mobileContainerHeader(data, products);
+  mobileContainerHeader(data, filteredArray);
   updateUi(filteredArray, CurrentSortMarker);
   addBrandsOnCategory(products);
   Pagination();
@@ -174,7 +175,6 @@ document.getElementById("Popularity").addEventListener("click", () => {
 document.getElementById("PriceLow").addEventListener("click", () => {
   sortByColorReset();
   sortAscendingOrder(filteredArray);
-
   CurrentSortMarker = "PriceLow";
   updateUi(filteredArray, CurrentSortMarker);
   Pagination();
@@ -412,6 +412,28 @@ function attachCloseButtonListeners() {
       }
     });
   });
+
+  let clearPriceRangeitem = document.querySelector(".closeButtonpriceRange");
+  if (clearPriceRangeitem) {
+    clearPriceRangeitem.addEventListener("click", (event) => {
+      clearPriceRange();
+      filterContent.priceRange.max = Infinity;
+      filterContent.priceRange.min = 0;
+      let cardToRemove = event.target.closest(".filtercard");
+      if (cardToRemove) {
+        cardToRemove.remove();
+      }
+
+      filteredArray = applyFilterOnProducts(
+        filterContent,
+        filteredArray,
+        products,
+        CurrentSortMarker
+      );
+      updateUi(filteredArray, CurrentSortMarker);
+      Pagination();
+    });
+  }
   changeMargin();
 }
 
@@ -731,8 +753,9 @@ document.getElementById("16gbram").addEventListener("change", () => {
 function Pagination() {
   let paginations = document.querySelector(".pagination");
   paginations.innerHTML = "";
-  let countofPages = (filteredArray.length / 24).toFixed();
-  for (let i = 1; i < countofPages && i < 11; i++) {
+  let countofPages = Math.floor(filteredArray.length / 24);
+  console.log(countofPages);
+  for (let i = 1; i <= countofPages && i < 11; i++) {
     let pageButton = document.createElement("div");
     pageButton.className = "paginationButton";
     pageButton.innerHTML = i;
