@@ -87,12 +87,12 @@ export function mobileContainerHeader(data, mobiles) {
   let pageLocation = document.querySelector(".pageLocation");
   pageLocation.innerHTML = `
     <span>Home</span>
-    <span> > </span>
+    <span>></span>
     <span class="pagelocationSpan">${data.pageLocation}</span>
     <span> > </span>
     <span>${data.product}</span>`;
   let searchHeadingData = document.getElementById("searchHeadingData");
-  searchHeadingData.innerHTML = `1-24 of ${mobiles.length}`;
+  searchHeadingData.innerHTML = `1 - 24 of ${mobiles.length}`;
   let searchHeadingProduct = document.getElementById("searchHeadingProduct");
   searchHeadingProduct.innerText = `"${data.product}"`;
 }
@@ -223,8 +223,12 @@ export function clearPriceRange() {
 }
 
 export function updateUi(products, CurrentSortMarker) {
+  let mobilesContainer = document.querySelector(".mobilesContainerWrapper");
+  mobilesContainer.innerHTML = "";
   let id = document.getElementById(CurrentSortMarker);
   id.style.color = "#2874f0";
+  id.style.borderBottom = '2px solid #2374f0';
+  id.style.fontFamily = "Inter-semibold";
   if (products.length == 0) {
     noResultfound();
   } else {
@@ -254,10 +258,6 @@ export function noResultfound() {
               </div>`;
 
   mobileContainerWrapper.insertAdjacentHTML("beforeend", noResultFound);
-}
-export function clearUI() {
-  let mobilesContainer = document.querySelector(".mobilesContainerWrapper");
-  mobilesContainer.innerHTML = "";
 }
 export function applyFilterOnProducts(
   filterContent,
@@ -321,7 +321,6 @@ export function footer(footerData) {
   // footerData.footerItemPart1.forEach((element) => {
   //   footerElementItems = "";
   //   let footerElement = `<div class="footerItemHeading">${element.heading}</div>`;
-    
   //   footerElementItems = footer
   // });
 }

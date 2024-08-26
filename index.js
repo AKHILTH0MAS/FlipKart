@@ -6,8 +6,7 @@ import {
   clearPriceRange,
   updateUi,
   applyFilterOnProducts,
-  clearUI,
-  footer
+  footer,
 } from "./scripts/uiFunctions.js";
 import {
   sortAscendingOrder,
@@ -75,7 +74,7 @@ function addBrandsOnCategory(products) {
           products,
           CurrentSortMarker
         );
-        clearUI();
+
         updateUi(filteredArray, CurrentSortMarker);
         Pagination();
       } else {
@@ -87,9 +86,10 @@ function addBrandsOnCategory(products) {
           products,
           CurrentSortMarker
         );
-        clearUI();
+
         updateUi(filteredArray, CurrentSortMarker);
         Pagination();
+        changeMargin();
       }
     });
   });
@@ -106,7 +106,7 @@ document.getElementById("4").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
     Pagination();
   } else {
@@ -117,9 +117,10 @@ document.getElementById("4").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
     Pagination();
+    changeMargin();
   }
 });
 // for selecting only on the three stared or above the
@@ -134,7 +135,7 @@ document.getElementById("3").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
     Pagination();
   } else {
@@ -145,9 +146,10 @@ document.getElementById("3").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
     Pagination();
+    changeMargin();
   }
 });
 //event listner for the relevance
@@ -155,7 +157,7 @@ document.getElementById("relevance").addEventListener("click", () => {
   CurrentSortMarker = "relevance";
   sortRelevanceOrder(filteredArray);
   sortByColorReset();
-  clearUI();
+
   updateUi(filteredArray, CurrentSortMarker);
   Pagination();
 });
@@ -163,7 +165,7 @@ document.getElementById("relevance").addEventListener("click", () => {
 document.getElementById("Popularity").addEventListener("click", () => {
   sortByColorReset();
   sortPopularityOrder(filteredArray);
-  clearUI();
+
   CurrentSortMarker = "Popularity";
   updateUi(filteredArray, CurrentSortMarker);
   Pagination();
@@ -172,7 +174,7 @@ document.getElementById("Popularity").addEventListener("click", () => {
 document.getElementById("PriceLow").addEventListener("click", () => {
   sortByColorReset();
   sortAscendingOrder(filteredArray);
-  clearUI();
+
   CurrentSortMarker = "PriceLow";
   updateUi(filteredArray, CurrentSortMarker);
   Pagination();
@@ -182,7 +184,7 @@ document.getElementById("NewestFirst").addEventListener("click", () => {
   sortByColorReset();
   sortAscendingDateOrder(filteredArray);
   CurrentSortMarker = "NewestFirst";
-  clearUI();
+
   updateUi(filteredArray, CurrentSortMarker);
   Pagination();
 });
@@ -190,7 +192,7 @@ document.getElementById("NewestFirst").addEventListener("click", () => {
 document.getElementById("PriceHigh").addEventListener("click", () => {
   sortByColorReset();
   sortDescendingOrder(filteredArray);
-  clearUI();
+
   CurrentSortMarker = "PriceHigh";
   updateUi(filteredArray, CurrentSortMarker);
   Pagination();
@@ -261,6 +263,7 @@ document.getElementById("SelectMax").addEventListener("click", () => {
 //create filter card showing on the top of the filters heading
 function createFilterCard(classNameList) {
   let filterContainer = document.querySelector(".filter-content");
+  filterContainer.style.margin = "8px 0 0 -4px";
   let className = classNameList.split(" ")[1];
 
   // Remove existing filter cards for the specific className
@@ -318,6 +321,18 @@ function createFilterCard(classNameList) {
   attachCloseButtonListeners();
 }
 
+function changeMargin() {
+  if (
+    filterContent.brand.size === 0 &&
+    filterContent.ram.size === 0 &&
+    filterContent.ram.size === 0 &&
+    filterContent.priceRange.min == null
+  ) {
+    let filterContainer = document.querySelector(".filter-content");
+    filterContainer.style.margin = "0";
+  }
+}
+
 function attachCloseButtonListeners() {
   let closebuttonBrands = document.querySelectorAll(".closeButtonBrand");
   closebuttonBrands.forEach((element) => {
@@ -331,7 +346,16 @@ function attachCloseButtonListeners() {
         if (correspondingCheckbox) {
           correspondingCheckbox.checked = false;
         }
-        updateUIAfterFilterChange();
+        // updateUIAfterFilterChange();
+        filteredArray = applyFilterOnProducts(
+          filterContent,
+          filteredArray,
+          products,
+          CurrentSortMarker
+        );
+
+        updateUi(filteredArray, CurrentSortMarker);
+        Pagination();
       }
     });
   });
@@ -350,7 +374,15 @@ function attachCloseButtonListeners() {
         if (correspondingCheckbox) {
           correspondingCheckbox.checked = false;
         }
-        updateUIAfterFilterChange();
+        filteredArray = applyFilterOnProducts(
+          filterContent,
+          filteredArray,
+          products,
+          CurrentSortMarker
+        );
+
+        updateUi(filteredArray, CurrentSortMarker);
+        Pagination();
       }
     });
   });
@@ -369,10 +401,18 @@ function attachCloseButtonListeners() {
         if (correspondingCheckbox.checked) {
           correspondingCheckbox.checked = false;
         }
-        updateUIAfterFilterChange();
+        filteredArray = applyFilterOnProducts(
+          filterContent,
+          filteredArray,
+          products,
+          CurrentSortMarker
+        );
+        updateUi(filteredArray, CurrentSortMarker);
+        Pagination();
       }
     });
   });
+  changeMargin();
 }
 
 // evcent listner for  the select tags action
@@ -416,7 +456,7 @@ document.getElementById("SelectMin").addEventListener("change", () => {
     products,
     CurrentSortMarker
   );
-  clearUI();
+
   updateUi(filteredArray, CurrentSortMarker);
   Pagination();
 });
@@ -468,7 +508,7 @@ document.getElementById("SelectMax").addEventListener("change", () => {
     products,
     CurrentSortMarker
   );
-  clearUI();
+
   updateUi(filteredArray, CurrentSortMarker);
   Pagination();
 });
@@ -484,7 +524,7 @@ document.getElementById("4gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
     Pagination();
   } else {
@@ -495,8 +535,9 @@ document.getElementById("4gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
+    changeMargin();
   }
 });
 //eventlistner for ram 3gb
@@ -511,7 +552,7 @@ document.getElementById("3gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
   } else {
     filterContent.ram.delete(3);
@@ -521,8 +562,9 @@ document.getElementById("3gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
+    changeMargin();
   }
 });
 //event listner for 2gb ram
@@ -537,7 +579,7 @@ document.getElementById("2gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
   } else {
     filterContent.ram.delete(2);
@@ -547,8 +589,9 @@ document.getElementById("2gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
+    changeMargin();
   }
 });
 //EventListner 1 gb ram and less
@@ -563,7 +606,7 @@ document.getElementById("1gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
   } else {
     filterContent.ram.delete(1);
@@ -573,8 +616,9 @@ document.getElementById("1gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
+    changeMargin();
   }
 });
 //EventListner 8 gb ram
@@ -589,7 +633,7 @@ document.getElementById("8gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
   } else {
     filterContent.ram.delete(8);
@@ -599,8 +643,9 @@ document.getElementById("8gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
+    changeMargin();
   }
 });
 //EventListner for 6gb ram
@@ -615,7 +660,7 @@ document.getElementById("6gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
   } else {
     filterContent.ram.delete(6);
@@ -625,7 +670,7 @@ document.getElementById("6gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+    changeMargin();
     updateUi(filteredArray, CurrentSortMarker);
   }
 });
@@ -641,7 +686,7 @@ document.getElementById("12gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
   } else {
     filterContent.ram.delete(12);
@@ -651,8 +696,9 @@ document.getElementById("12gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
+    changeMargin();
   }
 });
 //Event listner for 16gbram
@@ -667,7 +713,7 @@ document.getElementById("16gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
   } else {
     filterContent.ram.delete(16);
@@ -677,8 +723,9 @@ document.getElementById("16gbram").addEventListener("change", () => {
       products,
       CurrentSortMarker
     );
-    clearUI();
+
     updateUi(filteredArray, CurrentSortMarker);
+    changeMargin();
   }
 });
 function Pagination() {
@@ -705,7 +752,7 @@ function Pagination() {
       if (page == 1) {
         let start = 0;
         let end = 24;
-        clearUI();
+
         updateUi(filteredArray.slice(start, end), CurrentSortMarker);
       } else {
         let start = count * (page - 1) + 1;
@@ -714,7 +761,7 @@ function Pagination() {
         if (arr.length == 0) {
           arr = filteredArray.slice(1, 24).sort((a, b) => 0.5 - Math.random());
         }
-        clearUI();
+
         updateUi(arr, CurrentSortMarker);
       }
       paginationButtons.forEach((value) => {
