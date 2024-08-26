@@ -753,7 +753,7 @@ document.getElementById("16gbram").addEventListener("change", () => {
 function Pagination() {
   let paginations = document.querySelector(".pagination");
   paginations.innerHTML = "";
-  let countofPages = Math.floor(filteredArray.length / 24);
+  let countofPages = Math.ceil(filteredArray.length / 24);
   console.log(countofPages);
   for (let i = 1; i <= countofPages && i < 11; i++) {
     let pageButton = document.createElement("div");
@@ -776,7 +776,13 @@ function Pagination() {
         let start = 0;
         let end = 24;
 
-        updateUi(filteredArray.slice(start, end), CurrentSortMarker);
+        updateUi(
+          filteredArray.slice(start, end),
+          CurrentSortMarker,
+          1,
+          24,
+          filteredArray.length
+        );
       } else {
         let start = count * (page - 1) + 1;
         let end = count * page;
@@ -785,7 +791,13 @@ function Pagination() {
           arr = filteredArray.slice(1, 24).sort((a, b) => 0.5 - Math.random());
         }
 
-        updateUi(arr, CurrentSortMarker);
+        updateUi(
+          arr,
+          CurrentSortMarker,
+          start,
+          start + arr.length < end ? start + arr.length : end,
+          filteredArray.length
+        );
       }
       paginationButtons.forEach((value) => {
         value.style.background = "#fff";

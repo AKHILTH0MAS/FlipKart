@@ -222,7 +222,7 @@ export function clearPriceRange() {
   selectMin.dispatchEvent(new Event("click"));
 }
 
-export function updateUi(products, CurrentSortMarker) {
+export function updateUi(products, CurrentSortMarker, start = 1,end = 24, length = products.length) {
   let mobilesContainer = document.querySelector(".mobilesContainerWrapper");
   mobilesContainer.innerHTML = "";
   let id = document.getElementById(CurrentSortMarker);
@@ -230,7 +230,8 @@ export function updateUi(products, CurrentSortMarker) {
   id.style.borderBottom = '2px solid #2374f0';
   id.style.fontFamily = "Inter-semibold";
   let searchHeadingData = document.getElementById("searchHeadingData");
-  searchHeadingData.innerHTML = `1 - 24 of ${products.length}`;
+  searchHeadingData.innerHTML = `${start} - ${end} of ${length}`;
+
   if (products.length == 0) {
     noResultfound();
   } else {
